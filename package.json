@@ -1,0 +1,54 @@
+{
+  "name": "mika-cloudflare-relay",
+  "version": "0.1.1",
+  "private": true,
+  "type": "module",
+  "license": "Apache-2.0",
+  "description": "Single-phone Cloudflare Workers gateway compatible with Mika v0.1.35 mika-relay.v2",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --format=esm --platform=neutral --target=es2022 --external:cloudflare:workers --outfile=dist/worker.js",
+    "typecheck": "tsc --noEmit",
+    "types": "wrangler types --strict-vars=false",
+    "types:check": "wrangler types --strict-vars=false --check",
+    "keygen": "node -e \"console.log(require('node:crypto').randomBytes(32).toString('base64url'))\"",
+    "test": "npm run build && node --test --test-concurrency=1 test/*.test.mjs",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "check:deploy": "wrangler deploy --dry-run --outdir .wrangler/dry-run"
+  },
+  "engines": {
+    "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EvanDbg/mika-cloudflare-relay.git"
+  },
+  "homepage": "https://github.com/EvanDbg/mika-cloudflare-relay#readme",
+  "bugs": {
+    "url": "https://github.com/EvanDbg/mika-cloudflare-relay/issues"
+  },
+  "cloudflare": {
+    "bindings": {
+      "OWNER_KEY": {
+        "description": "必填：请替换 CHANGE_ME，使用密码管理器生成至少 32 个字符的随机私有密钥，或在本地运行 npm run keygen。部署后用它登录网关管理页；它不是 Cloudflare API Token，也不是 Mika 手机访问令牌。"
+      },
+      "RELAY": {
+        "description": "保存这一实例的单手机配对状态并协调 WebSocket 转发；部署时自动创建独立 SQLite Durable Object。"
+      },
+      "RELAY_TIMEOUT_MS": {
+        "description": "请求等待上限，单位毫秒。通常保留 65000。"
+      }
+    }
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "5.20261103.1",
+    "@types/node": "26.6.6",
+    "esbuild": "0.28.2",
+    "https-proxy-agent": "9.1.0",
+    "jsdom": "30.1.3",
+    "miniflare": "5.20261103.0-beta",
+    "typescript": "7.0.2",
+    "wrangler": "4.157.0",
+    "ws": "8.22.1"
+  }
+}

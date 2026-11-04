@@ -1,0 +1,17 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 3
+    groups:
+      cloudflare-runtime:
+        patterns:
+          - wrangler
+          - miniflare
+          - "@cloudflare/*"
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

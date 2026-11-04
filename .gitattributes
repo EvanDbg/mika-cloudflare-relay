@@ -1,0 +1,2 @@
+vendor/** linguist-vendored
+worker-configuration.d.ts linguist-generated

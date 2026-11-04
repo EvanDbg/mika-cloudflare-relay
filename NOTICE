@@ -1,0 +1,16 @@
+Mika Cloudflare Relay
+
+Upstream notice:
+Mika
+Copyright 2026 wangzan101
+
+Protocol-compatible adaptation of Mika v0.1.35 (mika-relay.v2).
+Upstream: https://github.com/wangzan101/Mika
+Snapshot: 6661b9e99a9a8f372c93845f5f9572de0711f239
+Upstream license: Apache License 2.0.
+
+This project rewrites the Go relay for Cloudflare Workers and SQLite-backed
+Durable Objects, adds persistent pairing/limits and a Chinese management UI.
+It is a separate adaptation, not an official Mika release.
+
+Unmodified reference excerpts in vendor/mika retain their upstream license.

@@ -1,0 +1,5 @@
+# Deploy to Cloudflare reads this file to ask for the runtime secret.
+# For local development, copy to .dev.vars and replace CHANGE_ME.
+# Generate a fresh random key with: npm run keygen
+# The placeholder is deliberately too short to unlock the gateway.
+OWNER_KEY=CHANGE_ME
